@@ -6,34 +6,37 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 21:29:50 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/03 23:07:49 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/05 22:16:20 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_parsing(char *str, va_list ap, t_flag *flag)
+char	*ft_parsing(char *str, va_list ap, t_flag *flag)
 {
-	if (str == '%')
+	(void)ap;
+	if (str[0] == '%')
 	{
 		str++;
-		while (str == '#' || str == '0' || str == '+' || str == '-' || str == ' ')
+		while (str[0] == '#' || str[0] == '0' || str[0] == '+' || str[0] == '-' || str[0] == ' ' || str[0] == 'z' || str[0] == 'j' || str[0] == 'l' || str[0] == 'h')
 		{
-			if (set_flag(str, flag) == 0)
-				return (0);
+			if (set_flag(&str, flag) == 0)
+				return (NULL);
 			str++;
 		}
-		if (ft_parsing_conversion(str, ap) == 0)
-			return (0);
+		/*if (ft_parsing_conversion(str, ap) == 0)
+			return (0);*/
 	}
 	else
 	{
-		ft_putchar(str);
+		ft_putchar(str[0]);
+		str++;
 	}
-	return (1);
+	return (str);
 }
 
-int	ft_parsing_conversion(char *str, va_list ap)
+/*int	ft_parsing_conversion(char *str, va_list ap)
 {
 	if (str == 's' || str == 'S')
 	{
@@ -52,59 +55,63 @@ int	ft_parsing_conversion(char *str, va_list ap)
 	{
 		ft_cC_conversion(str, ap);
 	}
-}
+	return (0);
+}*/
 
-int	set_flag(char *str, t_flag *flag)
+int	set_flag(char **str, t_flag *flag)
 {
-	if (flag->hashtag == 0 && str == '#')
+	if (flag->hashtag == 0 && (*str)[0] == '#')
 	{
 		flag->hashtag = 1;
 	}
-	else if (flag->zero == 0 && str == '0')
+	else if (flag->zero == 0 && (*str)[0] == '0')
 	{
 		flag->zero = 1;
 	}
-	else if (flag->plus == 0 && str == '+')
+	else if (flag->plus == 0 && (*str)[0] == '+')
 	{
 		flag->plus = 1;
 	}
-	else if (flag->minus == 0 && str == '-')
+	else if (flag->minus == 0 && (*str)[0] == '-')
 	{
 		flag->minus = 1;
 	}
-	else if (flag->space == 0 && str == ' ')
+	else if (flag->space == 0 && (*str)[0] == ' ')
 	{
 		flag->space = 1;
 	}
-	else if (flag->h == 0 && str == 'h')
+	else if (flag->h == 0 && (*str)[0] == 'h')
 	{
-		if (str[1] == 'h')
+		if ((*str)[1] == 'h')
 		{
 			flag->h = 2;
-			str++;
+			(*str)++;
 		}
 		else
 			flag->h = 1;
 	}
-	else if (flag->l == 0 && str == 'l')
+	else if (flag->l == 0 && (*str)[0] == 'l')
 	{
-		if (str[1] == 'l')
+		if ((*str)[1] == 'l')
 		{
 			flag->l = 2;
-			str++;
+			(*str)++;
 		}
 		else
 			flag->l = 1;
 	}
-	else if (flag->j == 0 && str == 'j')
+	else if (flag->j == 0 && (*str)[0] == 'j')
 	{
 		flag->j = 1;
 	}
-	else if (flag->z == 0 && str == 'z')
+	else if (flag->z == 0 && (*str)[0] == 'z')
 	{
 		flag->z = 1;
 	}
 	else
+	{
+		ft_putstr("ccc\n");
 		return (0);
+	}
 	return (1);
 }
