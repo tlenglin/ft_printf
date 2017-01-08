@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 12:28:06 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/05 21:48:31 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:20:08 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <string.h>
 # include "./libft/libft.h"
+# include <stdint.h>
 
 typedef struct	s_flag
 {
@@ -32,11 +33,13 @@ typedef struct	s_flag
 
 int	ft_printf(const char *str, ...);
 char	*ft_parsing(char *str, va_list ap, t_flag *flag);
-int	ft_parsing_conversion(char *str, va_list ap);
+int	ft_parsing_conversion(char **str, t_flag *flag, va_list ap);
 int	set_flag(char **str, t_flag *flag);
-//int	ft_sS_conversion(char *str, va_list ap);
-//int	ft_p_conversion(char *str, va_list ap);
-//int	ft_number_conversion(char *str, va_list ap);
-//int	ft_cC_conversion(char *str, va_list ap);
+int	ft_sS_conversion(char **str, va_list ap);
+int	ft_p_conversion(va_list ap);
+int	ft_number_conversion(char **str, va_list ap);
+int	ft_cC_conversion(char **str, va_list ap);
+uintmax_t	ft_get_octal(uintmax_t unb);
+char	*ft_get_hexa(uintmax_t unb, char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 21:29:50 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/05 22:16:20 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:22:55 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char	*ft_parsing(char *str, va_list ap, t_flag *flag)
 				return (NULL);
 			str++;
 		}
-		/*if (ft_parsing_conversion(str, ap) == 0)
-			return (0);*/
+		if (ft_parsing_conversion(&str, flag, ap) == 0)
+			return (0);
 	}
 	else
 	{
@@ -36,27 +36,28 @@ char	*ft_parsing(char *str, va_list ap, t_flag *flag)
 	return (str);
 }
 
-/*int	ft_parsing_conversion(char *str, va_list ap)
+int	ft_parsing_conversion(char **str, t_flag *flag, va_list ap)
 {
-	if (str == 's' || str == 'S')
+	(void)flag;
+	if ((*str)[0] == 's' || (*str)[0] == 'S')
 	{
 		ft_sS_conversion(str, ap);
 	}
-	if (str == 'p')
+	if ((*str)[0] == 'p')
 	{
-		ft_p_conversion(str, ap);
+		ft_p_conversion(ap);
 	}
-	if (str == 'i' || str == 'd' || str == 'D' || str == 'o' || str == 'O' ||
-	str == 'u' || str == 'U' || str == 'x' || str == 'X')
+	if ((*str)[0] == 'i' || (*str)[0] == 'd' || (*str)[0] == 'D' || (*str)[0] == 'o' || (*str)[0] == 'O' ||
+	(*str)[0] == 'u' || (*str)[0] == 'U' || (*str)[0] == 'x' || (*str)[0] == 'X')
 	{
 		ft_number_conversion(str, ap);
 	}
-	if (str == 'c' || str == 'C')
+	if ((*str)[0] == 'c' || (*str)[0] == 'C')
 	{
 		ft_cC_conversion(str, ap);
 	}
 	return (0);
-}*/
+}
 
 int	set_flag(char **str, t_flag *flag)
 {
@@ -110,7 +111,6 @@ int	set_flag(char **str, t_flag *flag)
 	}
 	else
 	{
-		ft_putstr("ccc\n");
 		return (0);
 	}
 	return (1);

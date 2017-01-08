@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 11:52:51 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/05 22:16:53 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:23:21 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int main(void)
 {
-	ft_printf("test 1 %lh0zllhh\n");
+	ft_printf("test 1 %lh0z\n");
+	ft_printf("test 1 %lh0z\n");
 	return (0);
 }
