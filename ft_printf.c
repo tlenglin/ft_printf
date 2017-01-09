@@ -6,12 +6,13 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 12:29:24 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/05 21:29:49 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/09 19:51:31 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int	ft_printf(const char *str, ...)
 {
@@ -25,10 +26,16 @@ int	ft_printf(const char *str, ...)
 	va_start(ap, str);
 	while (str2[0] != '\0')
 	{
+		if (str2[0] == '%')
+		{
+			free(flag);
+			if (!(flag = ft_memalloc(sizeof(t_flag))))
+				return (0);
+		}
 		if ((str2 = ft_parsing(str2, ap, flag)) == 0)
 			return (0);
 	}
-	ft_putstr("\nflag-># = ");
+	/*ft_putstr("\nflag-># = ");
 	ft_putnbr(flag->hashtag);
 	ft_putstr("\nflag->0 = ");
 	ft_putnbr(flag->zero);
@@ -45,6 +52,6 @@ int	ft_printf(const char *str, ...)
 	ft_putstr("\nflag->j = ");
 	ft_putnbr(flag->j);
 	ft_putstr("\nflag->z = ");
-	ft_putnbr(flag->z);
+	ft_putnbr(flag->z);*/
 	return (0);
 }

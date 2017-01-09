@@ -6,11 +6,13 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 23:08:44 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/08 16:21:22 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/09 19:34:58 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
+
 
 int	ft_sS_conversion(char **str, va_list ap)
 {
@@ -18,10 +20,10 @@ int	ft_sS_conversion(char **str, va_list ap)
 	{
 		ft_putstr(va_arg(ap, char*));
 	}
-	/*else
+	else
 	{
-
-	}*/
+		ft_putwstr(va_arg(ap, int*));
+	}
 	return (0);
 }
 
@@ -30,7 +32,7 @@ int	ft_p_conversion(va_list ap)
 	void *p;
 	ft_putstr("0x");
 	p = va_arg(ap, void*);
-	ft_putstr(ft_get_hexa((uintmax_t)p, 'x'));
+	ft_putstr(ft_itoa_ubase((uintmax_t)p, 16));
 	return (0);
 }
 
@@ -53,13 +55,13 @@ int	ft_number_conversion(char **str, va_list ap)
 	}
 	else if ((*str[0]) == 'o')
 	{
-		unb = ft_get_octal(va_arg(ap, uintmax_t));
-		ft_putnbr(unb);
+		res = ft_itoa_ubase(va_arg(ap, uintmax_t), 8);
+		ft_putstr(res);
 	}
 	else if ((*str[0]) == 'O')
 	{
-		unb = ft_get_octal(va_arg(ap, uintmax_t));
-		ft_putnbr(unb);
+		res = ft_itoa_ubase(va_arg(ap, uintmax_t), 8);
+		ft_putstr(res);
 	}
 	else if ((*str[0]) == 'u')
 	{
@@ -88,16 +90,17 @@ int	ft_number_conversion(char **str, va_list ap)
 
 int	ft_cC_conversion(char **str, va_list ap)
 {
-	char res[4] = {0, 0, 0, 0};
+	int	c;
 	if ((*str[0]) == 'c')
 	{
-		res[0] = va_arg(ap, int);
-		ft_putchar(res[0]);
+		c = va_arg(ap, int);
+		ft_putchar(c);
 	}
-	/*else
+	else
 	{
-
-	}*/
+		c = va_arg(ap, int);
+		ft_get_wildchar(c);
+	}
 	return (0);
 }
 
@@ -143,4 +146,73 @@ char *ft_get_hexa(uintmax_t unb, char c)
 		unb = unb / 16;
 	}
 	return (res);
+}
+
+char *ft_get_wildchar(int nb)
+{
+	char	*multichar;
+	int		c1;
+	int		c2;
+	int		c3;
+	int		c4;
+
+	multichar = ft_memalloc(4);
+	c1 = 0;
+	c2 = 0;
+	c3 = 0;
+	c4 = 0;
+	if (nb <= 127)
+	{
+		c4 = nb;
+		ft_putchar(c4);
+	}
+	else if (nb <= 2047)
+	{
+		c3 = nb >> 6;
+		c4 = nb - (c3 << 6);
+		c3 = c3 + 192;
+		c4 = c4 + 128;
+		ft_putchar(c3);
+		ft_putchar(c4);
+	}
+	else if (nb <= 65535)
+	{
+		c2 = nb >> 12;
+		c3 = (nb - (c2 << 12)) >> 6;
+		c4 = (nb - (c2 << 12) - (c3 << 6));
+		c2 = c2 + 224;
+		c3 = c3 + 128;
+		c4 = c4 + 128;
+		ft_putchar(c2);
+		ft_putchar(c3);
+		ft_putchar(c4);
+	}
+	else if (nb <= 2097151)
+	{
+		c1 = nb >> 18;
+		c2 = (nb - (c1 << 18)) >> 12;
+		c3 = (nb - (c1 << 18) - (c2 << 12)) >> 6;
+		c4 = nb - (c1 << 18) - (c2 << 12) - (c3 << 6);
+		c1 = c1 + 240;
+		c2 = c2 + 128;
+		c3 = c3 + 128;
+		c4 = c4 + 128;
+		ft_putchar(c1);
+		ft_putchar(c2);
+		ft_putchar(c3);
+		ft_putchar(c4);
+	}
+	return (multichar);
+}
+
+void	ft_putwstr(int *tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i] != 0)
+	{
+		ft_get_wildchar(tab[i]);
+		i++;
+	}
 }

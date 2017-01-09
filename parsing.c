@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 21:29:50 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/08 16:22:55 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/09 19:43:03 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*ft_parsing(char *str, va_list ap, t_flag *flag)
 		}
 		if (ft_parsing_conversion(&str, flag, ap) == 0)
 			return (0);
+		str++;
 	}
 	else
 	{
@@ -56,7 +57,7 @@ int	ft_parsing_conversion(char **str, t_flag *flag, va_list ap)
 	{
 		ft_cC_conversion(str, ap);
 	}
-	return (0);
+	return (1);
 }
 
 int	set_flag(char **str, t_flag *flag)
