@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 23:08:44 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/09 19:34:58 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:24:52 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,13 +150,13 @@ char *ft_get_hexa(uintmax_t unb, char c)
 
 char *ft_get_wildchar(int nb)
 {
-	char	*multichar;
-	int		c1;
-	int		c2;
-	int		c3;
-	int		c4;
+	unsigned char	*multichar;
+	unsigned char		c1;
+	unsigned char		c2;
+	unsigned char		c3;
+	unsigned char		c4;
 
-	multichar = ft_memalloc(4);
+	multichar = ft_strnew(4);
 	c1 = 0;
 	c2 = 0;
 	c3 = 0;
@@ -164,7 +164,6 @@ char *ft_get_wildchar(int nb)
 	if (nb <= 127)
 	{
 		c4 = nb;
-		ft_putchar(c4);
 	}
 	else if (nb <= 2047)
 	{
@@ -172,8 +171,6 @@ char *ft_get_wildchar(int nb)
 		c4 = nb - (c3 << 6);
 		c3 = c3 + 192;
 		c4 = c4 + 128;
-		ft_putchar(c3);
-		ft_putchar(c4);
 	}
 	else if (nb <= 65535)
 	{
@@ -183,9 +180,6 @@ char *ft_get_wildchar(int nb)
 		c2 = c2 + 224;
 		c3 = c3 + 128;
 		c4 = c4 + 128;
-		ft_putchar(c2);
-		ft_putchar(c3);
-		ft_putchar(c4);
 	}
 	else if (nb <= 2097151)
 	{
@@ -197,10 +191,6 @@ char *ft_get_wildchar(int nb)
 		c2 = c2 + 128;
 		c3 = c3 + 128;
 		c4 = c4 + 128;
-		ft_putchar(c1);
-		ft_putchar(c2);
-		ft_putchar(c3);
-		ft_putchar(c4);
 	}
 	return (multichar);
 }

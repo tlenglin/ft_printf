@@ -6,13 +6,13 @@
 #    By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 14:23:56 by tlenglin          #+#    #+#              #
-#    Updated: 2017/01/09 11:51:50 by tlenglin         ###   ########.fr        #
+#    Updated: 2017/01/13 11:12:07 by tlenglin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf
 
-SRC = ft_conversion.c ft_printf.c main.c parsing.c ft_itoa_base.c
+SRC = main.c conversion_specifier.c width_and_precision.c flag.c ft_printf.c length_modifier.c  ft_itoa_base.c
 
 OBJ = $(SRC:.c=.o)
 
