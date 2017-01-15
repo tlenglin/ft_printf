@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 14:34:29 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/15 12:07:21 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 15:27:32 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ unsigned char	*ft_add_zeros_precision(t_print *print, unsigned char *tmp)
 		str[i] = '0';
 		i++;
 	}
-	str2 = ft_printf_join(str, tmp);
+	str2 = ft_printf_join(str, tmp, 3);
 	return (str2);
 }
 
@@ -96,11 +96,11 @@ unsigned char	*ft_add_zeros(t_print *print, unsigned char *tmp)
 	}
 	if (print->minus == 1)
 	{
-		str2 = ft_printf_join(tmp, str);
+		str2 = ft_printf_join(tmp, str, 3);
 	}
 	else
 	{
-		str2 = ft_printf_join(str, tmp);
+		str2 = ft_printf_join(str, tmp, 3);
 	}
 	return (str2);
 }
@@ -122,11 +122,11 @@ unsigned char	*ft_add_space(t_print *print, unsigned char *tmp)
 	}
 	if (print->minus == 1)
 	{
-		str2 = ft_printf_join(tmp, str);
+		str2 = ft_printf_join(tmp, str, 3);
 	}
 	else
 	{
-		str2 = ft_printf_join(str, tmp);
+		str2 = ft_printf_join(str, tmp, 3);
 	}
 	return (str2);
 }

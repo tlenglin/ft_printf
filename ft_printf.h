@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 12:28:06 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/13 18:14:52 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 15:39:33 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,7 @@
 # include <string.h>
 # include "./libft/libft.h"
 # include <stdint.h>
-
-/*typedef struct	s_flag
-{
-	int	hashtag;
-	int	zero;
-	int	l;
-	int	plus;
-	int	minus;
-	int	space;
-	int	h;
-	int	j;
-	int	z;
-}				t_flag;*/
+# include <stdlib.h>
 
 typedef struct	s_print
 {
@@ -86,7 +74,7 @@ int	ft_strchr_position(unsigned char *str, unsigned char c);
 unsigned char	*ft_get_wildchar(int nb);
 unsigned char	*ft_strupper(unsigned char *str);
 int				ft_set_cursor(unsigned int cursor, unsigned char *copy);
-unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2);
+unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2, int nb);
 
 
 #endif

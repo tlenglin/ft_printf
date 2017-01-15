@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 16:39:50 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/15 12:32:05 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 15:29:27 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ unsigned char	*ft_s_conversion(t_print *print, va_list ap, char c)
 			nb = va_arg(ap, int*);
 			while (nb[i] != 0)
 			{
-				tmp = ft_printf_join(tmp, ft_get_wildchar(nb[i]));
+				tmp = ft_printf_join(tmp, ft_get_wildchar(nb[i]), 1);
 				i++;
 			}
 		}
@@ -156,7 +156,7 @@ unsigned char	*ft_s_conversion(t_print *print, va_list ap, char c)
 		nb = va_arg(ap, int*);
 		while (nb[i] != 0)
 		{
-			tmp = ft_printf_join(tmp, ft_get_wildchar(nb[i]));
+			tmp = ft_printf_join(tmp, ft_get_wildchar(nb[i]), 1);
 			i++;
 		}
 	}
@@ -201,7 +201,7 @@ unsigned char	*ft_p_conversion(t_print *print, va_list ap)
 	if (print->zero == 1 || print->hashtag == 1 || print->plus == 1 || print->space == 1)
 		return (NULL);
 	p = va_arg(ap, void*);
-	tmp = ft_printf_join((unsigned char*)"0x", ft_itoa_ubase((unsigned long)p, 16));
+	tmp = ft_printf_join((unsigned char*)"0x", ft_itoa_ubase((unsigned long)p, 16), 0);
 	if (print->width > (int)ft_strlen((char*)tmp))
 	{
 		tmp = ft_add_space(print, tmp);

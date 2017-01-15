@@ -176,14 +176,15 @@ int main(void)
 	// printf("%zp-zp\n", p);
 	// printf("%jp-jp\n", p);
 
-	printf("%c-\n", L'é');
-	printf("%1c-\n", L'é');
-	printf("%3c-\n", L'é');
-	printf("%-3c-\n", L'é');
-	printf("%C-\n", 'é');
-	printf("%1C-\n", 'é');
-	printf("%5C-\n", 'é');
-	printf("%-5C-\n", 'é');
+	// printf("%c-\n", L'é');
+	// printf("%1c-\n", L'é');
+	// printf("%3c-\n", L'é');
+	// printf("%-3c-\n", L'é');
+	// printf("%C-\n", 'é');
+	// printf("%1C-\n", 'é');
+	// printf("%5C-\n", 'é');
+	// printf("%-5C-\n", 'é');
+	printf("%.c\n", 'q');
 
 	return (0);
 }

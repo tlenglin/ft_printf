@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:45:28 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/13 15:57:25 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 15:18:38 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int	ft_set_cursor(unsigned int cursor, unsigned char *copy)
 	return (-1);
 }
 
-unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2)
+unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2, int nb)
 {
 	unsigned char	*tmp;
 	unsigned int	i;
@@ -181,5 +181,9 @@ unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2)
 			j++;
 		}
 	}
+	if (!str1 && (nb == 1 || nb == 3))
+		free(str1);
+	if (!str2 && (nb == 2 || nb == 3))
+		free(str2);
 	return (tmp);
 }

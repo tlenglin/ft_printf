@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 12:29:24 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/15 12:33:42 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 15:30:38 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ int	ft_printf(const char *str, ...)
 	while ((cursor = ft_strchr_position(copy, '%')) != -1)
 	{
 		// ft_putstr("\npercent trouve");
-		result = ft_printf_join(result, (unsigned char*)ft_strsub((char*)copy, 0, cursor));
+		result = ft_printf_join(result, (unsigned char*)ft_strsub((char*)copy, 0, cursor), 1);
 		if (ft_set_cursor(cursor, copy) == -1)
 			break ;
 		tmp = ft_global_parsing(copy, print, cursor, ap);
 		// ft_putstr("\nnew tmp = ");
 		// ft_putstr((char*)tmp);
-		result = ft_printf_join(result, tmp);
+		result = ft_printf_join(result, tmp, 3);
 		// ft_putstr("\nold cursor = ");
 		// ft_putnbr(cursor);
 		cursor = ft_set_cursor(cursor, copy);
@@ -97,7 +97,7 @@ int	ft_printf(const char *str, ...)
 		// ft_putstr((char*)copy);
 	}
 	// ft_putstr("pas de percent trouve\n");
-	result = ft_printf_join(result, copy);
+	result = ft_printf_join(result, copy, 3);
 	ft_putstr((char*)result);
 	//ft_putnbr(ft_strlen((char*)result));
 	va_end(ap);
