@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 12:29:24 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/13 16:30:22 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 12:33:42 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,12 @@ int	ft_printf(const char *str, ...)
 	t_print			*print;
 	int	cursor;
 	unsigned char	*tmp;
-	unsigned int	count;
 
 	result = NULL;
 	cursor = 0;
-	count = 0;
 	// ft_putstr("debut du programme\n");
 	copy = (unsigned char*)ft_strdup((char*)str);
-	if (!str)
+	if (!str || !copy)
 		return (0);
 	if (!(print = ft_memalloc(sizeof(t_print))))
 		return (0);

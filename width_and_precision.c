@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 14:34:29 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/13 19:32:59 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 12:07:21 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ unsigned char	*ft_add_zeros_precision(t_print *print, unsigned char *tmp)
 
 	i = 0;
 	nb = print->precision - ft_strlen((char*)tmp);
+	// ft_putstr("precision = ");
+	// ft_putnbr(print->precision);
+	// ft_putstr("length = ");
+	// ft_putnbr(ft_strlen((char*)tmp));
+	// ft_putchar('\n');
 	str = (unsigned char*)ft_strnew(nb);
 	while (i < nb)
 	{
@@ -78,6 +83,11 @@ unsigned char	*ft_add_zeros(t_print *print, unsigned char *tmp)
 
 	i = 0;
 	nb = print->width - ft_strlen((char*)tmp);
+	// ft_putstr("width = ");
+	// ft_putnbr(print->width);
+	// ft_putstr("length = ");
+	// ft_putnbr(ft_strlen((char*)tmp));
+	// ft_putchar('\n');
 	str = (unsigned char*)ft_strnew(nb);
 	while (i < nb)
 	{
@@ -112,11 +122,11 @@ unsigned char	*ft_add_space(t_print *print, unsigned char *tmp)
 	}
 	if (print->minus == 1)
 	{
-		str2 = (unsigned char*)ft_strjoin((char*)tmp, (char*)str);
+		str2 = ft_printf_join(tmp, str);
 	}
 	else
 	{
-		str2 = (unsigned char*)ft_strjoin((char*)str, (char*)tmp);
+		str2 = ft_printf_join(str, tmp);
 	}
 	return (str2);
 }

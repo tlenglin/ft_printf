@@ -101,18 +101,18 @@ int main(void)
 	// printf("%#09.x-6.5x\n", 128);
 	// printf("%#09x-6.5x\n", 128);
 	// printf("%#5.6x-5.6x\n", 128);
-	printf("%o-x\n", 128);
-	printf("%0.5o-.5x\n", 128);
-	printf("%09.5o-5x\n", 128);
-	printf("%.5o-.5x\n", 128);
-	printf("%5o-5x\n", 128);
-	printf("%5.5o-5.5x\n", 128);
-	printf("%6.5o-6.5x\n", 128);
-	printf("%5.6o-5.6x\n", 128);
-	printf("%#5.5o-5.5x\n", 128);
-	printf("%#09.o-6.5x\n", 128);
-	printf("%#09o-6.5x\n", 128);
-	printf("%#5.6o-5.6x\n", 128);
+	// printf("%o-x\n", 128);
+	// printf("%0.5o-.5x\n", 128);
+	// printf("%09.5o-5x\n", 128);
+	// printf("%.5o-.5x\n", 128);
+	// printf("%5o-5x\n", 128);
+	// printf("%5.5o-5.5x\n", 128);
+	// printf("%6.5o-6.5x\n", 128);
+	// printf("%5.6o-5.6x\n", 128);
+	// printf("%#5.5o-5.5x\n", 128);
+	// printf("%#09.o-6.5x\n", 128);
+	// printf("%#09o-6.5x\n", 128);
+	// printf("%#5.6o-5.6x\n", 128);
 	// printf("%#d", 213);
 	// printf("%.3s-\n", "coucou");
 	// printf("%3s-\n", "coucou");
@@ -162,6 +162,28 @@ int main(void)
 	// printf("%-+ #3.3%-0+ #3.3\n");
 	//printf("%d", printf("%s", "î"));
 	//printf("2%ls\n", L"liberté");
+
+	// printf("%p-p\n", p);
+	// printf("%-p--p\n", p);
+	// printf("%6p-6p\n", p);
+	// printf("%-6p--6p\n", p);
+	// printf("%20p-20p\n", p);
+	// printf("%-20p--20p\n", p);
+	// printf("%hp-hp\n", p);
+	// printf("%hhp-hhp\n", p);
+	// printf("%lp-lp\n", p);
+	// printf("%llp-llp\n", p);
+	// printf("%zp-zp\n", p);
+	// printf("%jp-jp\n", p);
+
+	printf("%c-\n", L'é');
+	printf("%1c-\n", L'é');
+	printf("%3c-\n", L'é');
+	printf("%-3c-\n", L'é');
+	printf("%C-\n", 'é');
+	printf("%1C-\n", 'é');
+	printf("%5C-\n", 'é');
+	printf("%-5C-\n", 'é');
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 13:53:01 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/13 19:46:18 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 11:52:10 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,15 @@ unsigned char	*ft_set_flag_unsigned_number(char c, unsigned char *str, t_print *
 	if (print->plus == 1 || print->space == 1)
 		return (NULL);
 	tmp = (unsigned char*)ft_strdup((char*)str);
+	if (print->hashtag == 1 && (c == 'o' || c == 'O'))
+	{
+		tmp = ft_set_flag_hashtag(c, tmp);
+	}
 	if (print->precision > (int)length)
 	{
 		tmp = ft_add_zeros_precision(print, tmp);
 	}
-	if (print->hashtag == 1)
+	if (print->hashtag == 1 && (c == 'x' || c == 'X'))
 	{
 		tmp = ft_set_flag_hashtag(c, tmp);
 	}
@@ -171,7 +175,7 @@ unsigned char	*ft_set_flag_plus_space(char c, unsigned char *str, t_print *print
 		if (c == 'D' || c == 'i' || c == 'd')
 		{
 			if (tmp[0] != '-')
-				tmp = (unsigned char*)ft_strjoin("+", (char*)tmp);
+				tmp = ft_printf_join((unsigned char*)"+", tmp);
 		}
 		return (tmp);
 	}
@@ -180,7 +184,7 @@ unsigned char	*ft_set_flag_plus_space(char c, unsigned char *str, t_print *print
 		if (c == 'D' || c == 'i' || c == 'd')
 		{
 			if (tmp[0] != '-')
-				tmp = (unsigned char*)ft_strjoin(" ", (char*)tmp);
+				tmp = ft_printf_join((unsigned char*)" ", tmp);
 		}
 	}
 	return (tmp);
@@ -193,15 +197,15 @@ unsigned char	*ft_set_flag_hashtag(char c, unsigned char *str)
 	tmp = NULL;
 	if (c == 'o' || c == 'O')
 	{
-		tmp = (unsigned char*)ft_strjoin("0", (char*)str);
+		tmp = ft_printf_join((unsigned char*)"0", str);
 	}
 	else if (c == 'x')
 	{
-		tmp = (unsigned char*)ft_strjoin("0x", (char*)str);
+		tmp = ft_printf_join((unsigned char*)"0x", str);
 	}
 	else if (c == 'X')
 	{
-		tmp = (unsigned char*)ft_strjoin("0X", (char*)str);
+		tmp = ft_printf_join((unsigned char*)"0X", str);
 	}
 	else
 		return (str);

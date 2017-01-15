@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 11:52:51 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/13 19:35:00 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/15 12:08:18 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,29 @@
 
 int main(void)
 {
-	ft_printf("%o-x\n", 128);
-	ft_printf("%0.5o-.5x\n", 128);
-	ft_printf("%09.5o-5x\n", 128);
-	ft_printf("%.5o-.5x\n", 128);
-	ft_printf("%5o-5x\n", 128);
-	ft_printf("%5.5o-5.5x\n", 128);
-	ft_printf("%6.5o-6.5x\n", 128);
-	ft_printf("%5.6o-5.6x\n", 128);
-	ft_printf("%#5.5o-5.5x\n", 128);
-	ft_printf("%#09.o-6.5x\n", 128);
-	ft_printf("%#09o-6.5x\n", 128);
-	ft_printf("%#5.6o-5.6x\n", 128);
+	int i;
+	void	*p;
+
+	p = &i;
+	i = 45;
+	printf("%p-p\n", p);
+	printf("%-p--p\n", p);
+	printf("%6p-6p\n", p);
+	printf("%-6p--6p\n", p);
+	printf("%20p-20p\n", p);
+	printf("%-20p--20p\n", p);
+	// ft_printf("%o-x\n", 128);
+	// ft_printf("%0.5o-.5x\n", 128);
+	// ft_printf("%09.5o-5x\n", 128);
+	// ft_printf("%.5o-.5x\n", 128);
+	// ft_printf("%5o-5x\n", 128);
+	// ft_printf("%5.5o-5.5x\n", 128);
+	// ft_printf("%6.5o-6.5x\n", 128);
+	// ft_printf("%5.6o-5.6x\n", 128);
+	// ft_printf("%#5.5o-5.5x\n", 128);
+	// ft_printf("%#09.o-6.5x\n", 128);
+	// ft_printf("%#09o-6.5x\n", 128);
+	// ft_printf("%#5.6o-5.6x\n", 128);
 	// ft_printf("%x-x\n", 128);
 	// ft_printf("%0.5x-.5x\n", 128);
 	// ft_printf("%09.5x-09.5x\n", 128);
