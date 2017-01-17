@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 12:28:06 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/15 15:39:33 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/17 08:24:44 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <stdarg.h>
 # include <string.h>
-# include "./libft/libft.h"
 # include <stdint.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct	s_print
 {
@@ -34,6 +34,7 @@ typedef struct	s_print
 	int hh;
 	int ll;
 	int l;
+	unsigned long length;
 }				t_print;
 
 int				ft_printf(const char *str, ...);
@@ -53,19 +54,21 @@ int				ft_parsing_length_modifier(unsigned char *copy, t_print *print, unsigned 
 long			ft_set_length_modifier_di(t_print *print, va_list ap, char c);
 unsigned long	ft_set_length_modifier_uox(t_print *print, va_list ap, char c);
 
-t_print			*ft_reset_flag(void);
+int				ft_reset_flag(t_print *print);
 int				ft_parsing_flag(unsigned char *copy, t_print *print, unsigned int current_cursor);
 unsigned char	*ft_set_flag_signed_number(char c, unsigned char *str, t_print *print);
 unsigned char	*ft_set_flag_unsigned_number(char c, unsigned char *str, t_print *print);
 unsigned char	*ft_set_flag_char(unsigned char *str, t_print *print);
 unsigned char	*ft_set_flag(char c, unsigned char *str, t_print *print);
-unsigned char	*ft_set_flag_plus_space(char c, unsigned char *str, t_print *print);
+unsigned char	*ft_set_flag_plus_space(char c, unsigned char *str, t_print *print, int sign);
 unsigned char	*ft_set_flag_hashtag(char c, unsigned char *str);
+unsigned char	*ft_set_flag_string(unsigned char *str, t_print *print);
+
 
 unsigned char	*ft_add_zeros_precision(t_print *print, unsigned char *tmp);
 int				ft_parsing_width(unsigned char *copy, t_print *print, unsigned int current_cursor);
 int	ft_parsing_precision(unsigned char *copy, t_print *print, unsigned int current_cursor);
-unsigned char	*ft_add_zeros(t_print *print, unsigned char *tmp);
+unsigned char	*ft_add_zeros(t_print *print, unsigned char *tmp, char c);
 unsigned char	*ft_add_space(t_print *print, unsigned char *tmp);
 
 unsigned char	*ft_itoa_ubase(uintmax_t unb, int base);
@@ -75,6 +78,22 @@ unsigned char	*ft_get_wildchar(int nb);
 unsigned char	*ft_strupper(unsigned char *str);
 int				ft_set_cursor(unsigned int cursor, unsigned char *copy);
 unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2, int nb);
+
+unsigned char	*ft_itoa(long n);
+void	*ft_memalloc(size_t size);
+void	ft_putchar(char c);
+void	ft_putstr(char const *s);
+char	*ft_strdup(const char *s);
+char	*ft_strnew(size_t size);
+void	*ft_memset(void *s, int c, size_t n);
+size_t	ft_strlen(const char *s);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_strcpy(char *dest, const char *src);
+int		ft_isprint(int c);
+void	ft_bzero(void *s, size_t n);
+int		ft_atoi(const char *nptr);
+unsigned char	*ft_printf_join_bis(unsigned char *str1, unsigned char *str2, int nb);
+
 
 
 #endif

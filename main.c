@@ -6,12 +6,13 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/27 11:52:51 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/15 12:08:18 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/17 07:00:25 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int main(void)
 {
@@ -20,12 +21,12 @@ int main(void)
 
 	p = &i;
 	i = 45;
-	printf("%p-p\n", p);
-	printf("%-p--p\n", p);
-	printf("%6p-6p\n", p);
-	printf("%-6p--6p\n", p);
-	printf("%20p-20p\n", p);
-	printf("%-20p--20p\n", p);
+	// printf("%p-p\n", p);
+	// printf("%-p--p\n", p);
+	// printf("%6p-6p\n", p);
+	// printf("%-6p--6p\n", p);
+	// printf("%20p-20p\n", p);
+	// printf("%-20p--20p\n", p);
 	// ft_printf("%o-x\n", 128);
 	// ft_printf("%0.5o-.5x\n", 128);
 	// ft_printf("%09.5o-5x\n", 128);
@@ -101,5 +102,19 @@ int main(void)
 	// ft_printf("%0-3.3%-0-3.3\n");
 	// ft_printf("%0+ #3.3%-0+ #3.3\n");
 	// ft_printf("%-+ #3.3%-0+ #3.3\n");
+
+	// ft_printf("%lx\n", 4294967295);
+	// ft_printf("%lx\n", 4294967296);
+	// ft_printf("%lx\n", 4294967297);
+
+	// ft_printf("% d", 42);
+// ft_printf("%lld", 9223372036854775807);
+ft_printf("{%3c}\n", 0);
+printf("{%3c}\n", 0);
+// ft_printf("%.2c", 0);
+// ft_printf("%2c", 0);
+// ft_printf("%2c", 0);
+
+
 	return (0);
 }

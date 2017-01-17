@@ -5,39 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/12/14 14:23:56 by tlenglin          #+#    #+#              #
-#    Updated: 2017/01/15 15:38:11 by tlenglin         ###   ########.fr        #
+#    Created: 2017/01/16 11:02:50 by tlenglin          #+#    #+#              #
+#    Updated: 2017/01/16 22:56:01 by tlenglin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_printf
+NAME = libftprintf.a
 
-SRC = main.c conversion_specifier.c width_and_precision.c flag.c ft_printf.c length_modifier.c  ft_itoa_base.c
-
-OBJ = $(SRC:.c=.o)
+SRC = ft_bzero.c ft_atoi.c conversion_specifier.c width_and_precision.c flag.c ft_printf.c length_modifier.c  ft_itoa_base.c ft_itoa.c ft_memalloc.c ft_putchar.c ft_putstr.c ft_strdup.c ft_strnew.c ft_memset.c ft_strlen.c ft_strsub.c ft_strcpy.c ft_isprint.c
 
 FLAGS = -Wall -Wextra -Werror
 
-CC = gcc
-
 LIBFT_PATH = ./libft
+
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@make -C $(LIBFT_PATH)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) -L./libft -lft
-
-%.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@
+$(NAME):
+	gcc -c $(FLAGS) $(SRC) ft_printf.h
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
-	@rm -rf $(OBJ)
-	@make -C $(LIBFT_PATH) clean
+	rm -f $(OBJ)
+	rm -f ft_printf.h.gch
 
 fclean: clean
-	@rm -rf $(NAME)
-	@make -C $(LIBFT_PATH) fclean
+	rm -f $(NAME)
 
 re: fclean all
 

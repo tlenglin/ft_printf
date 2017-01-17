@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:45:28 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/15 15:18:38 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/17 08:24:21 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ unsigned char	*ft_itoa_ubase(uintmax_t unb, int base)
 		i = i / base;
 		j++;
 	}
+	if (j == 0)
+		j = 1;
 	res = (unsigned char*)ft_strnew(j);
+	res[0] = '0';
 	i = 1;
 	while (unb != 0)
 	{
@@ -149,6 +152,46 @@ int	ft_set_cursor(unsigned int cursor, unsigned char *copy)
 }
 
 unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2, int nb)
+{
+	unsigned char	*tmp;
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	tmp = NULL;
+	if (str1 == NULL)
+	{
+		tmp = (unsigned char*)ft_strdup((char*)str2);
+	}
+	else if (str2 == NULL)
+	{
+		tmp = (unsigned char*)ft_strdup((char*)str1);
+	}
+	else
+	{
+		if (!(tmp = (unsigned char*)ft_strnew(ft_strlen((char*)str1) + ft_strlen((char*)str2) + 1)))
+			return (NULL);
+		while (str1[i])
+		{
+			tmp[i] = str1[i];
+			i++;
+		}
+		while (str2[j])
+		{
+			tmp[i] = str2[j];
+			i++;
+			j++;
+		}
+	}
+	if (!str1 && (nb == 1 || nb == 3))
+		free(str1);
+	if (!str2 && (nb == 2 || nb == 3))
+		free(str2);
+	return (tmp);
+}
+
+unsigned char	*ft_printf_join_bis(unsigned char *str1, unsigned char *str2, int nb)
 {
 	unsigned char	*tmp;
 	unsigned int	i;

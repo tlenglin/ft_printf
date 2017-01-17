@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 10:37:18 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/12 22:33:33 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/17 06:53:11 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ long	ft_set_length_modifier_di(t_print *print, va_list ap, char c)
 	nb = 0;
 	if (print->l == 1 || print->ll == 1 || print->j == 1 || print->z == 1 || c == 'D' || c == 'O')
 	{
-		nb = va_arg(ap, long);
+		nb = va_arg(ap, intmax_t);
 	}
 	else if (print->h == 1)
 	{
@@ -95,7 +95,7 @@ unsigned long	ft_set_length_modifier_uox(t_print *print, va_list ap, char c)
 	vshort = 0;
 	vchar = 0;
 	nb = 0;
-	if (print->l == 1 || print->ll == 1 || print->j == 1 || print->z == 1 || c == 'U')
+	if (print->l == 1 || print->ll == 1 || print->j == 1 || print->z == 1 || c == 'U' || c == 'O')
 	{
 		nb = va_arg(ap, unsigned long);
 	}

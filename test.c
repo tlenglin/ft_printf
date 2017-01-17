@@ -24,9 +24,9 @@ int main(void)
 {
 	//unsigned char c;
 	int i;
-	void	*p;
+	// void	*p;
 
-	p = &i;
+	// p = &i;
 	i = 45;
 	// write(1, &i, 1);
 	/*c = 50;
@@ -34,7 +34,8 @@ int main(void)
 	// unsigned long n;
 	//
 	// n = 9223372036854775808;
-	// printf("%7d 7d\n", -123456);
+	// printf("%   7d 7d\n", 123456);
+	// printf("%7d 7d\n", 123456);
 	// printf("%.7d .7d\n", -123456);
 	// printf("%+.7d +.7d\n", -123456);
 	// printf("%0+.7d 0+.7d\n", -123456);
@@ -123,6 +124,10 @@ int main(void)
 	// printf("%20p-15p\n", p);
 	// printf("%-20p-15p\n", p);
 	// printf("%5%-5\n");
+	// printf("% 5%-5\n");
+	// printf("%  5%-5\n");
+	// printf("%  %-5\n");
+	// printf("%   #%-5\n");
 	// printf("%2%-5\n");
 	// printf("%-5%--5\n");
 	// printf("%05%-05\n");
@@ -184,7 +189,8 @@ int main(void)
 	// printf("%1C-\n", 'é');
 	// printf("%5C-\n", 'é');
 	// printf("%-5C-\n", 'é');
-	printf("%.c\n", 'q');
+	// printf("%.c\n", 'q');
 
+	printf("%");
 	return (0);
 }
