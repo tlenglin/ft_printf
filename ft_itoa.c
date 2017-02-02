@@ -6,7 +6,7 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 18:43:01 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/17 06:34:23 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/25 12:06:53 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void		itoa_isnegative(long *n, int *negative)
 
 unsigned char	*ft_itoa(long n)
 {
-	long		buffer;
+	long			buffer;
 	unsigned int	len;
-	int		negative;
+	int				negative;
 	unsigned char	*str;
 
 	buffer = n;

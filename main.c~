@@ -1,0 +1,8 @@
+int main(void)
+{
+	wchar_t *test;
+
+	test = "\xe0000";
+	ft_printf("%S", test);
+	return (0);
+}

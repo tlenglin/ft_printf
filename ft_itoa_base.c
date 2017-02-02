@@ -6,119 +6,11 @@
 /*   By: tlenglin <tlenglin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:45:28 by tlenglin          #+#    #+#             */
-/*   Updated: 2017/01/17 08:24:21 by tlenglin         ###   ########.fr       */
+/*   Updated: 2017/01/25 14:53:20 by tlenglin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-unsigned char	*ft_itoa_ubase(uintmax_t unb, int base)
-{
-	unsigned char tab[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-	uintmax_t	i;
-	unsigned char	*res;
-	uintmax_t j;
-
-	j = 0;
-	i = unb;
-	if (i == 0)
-		j = 1;
-	while (i != 0)
-	{
-		i = i / base;
-		j++;
-	}
-	if (j == 0)
-		j = 1;
-	res = (unsigned char*)ft_strnew(j);
-	res[0] = '0';
-	i = 1;
-	while (unb != 0)
-	{
-		res[j - 1] = tab[unb % base];
-		j--;
-		unb = unb / base;
-	}
-	return (res);
-}
-
-void	ft_putunbr(uintmax_t nb)
-{
-	if (nb > 9)
-	{
-		ft_putunbr(nb / 10);
-		ft_putunbr(nb % 10);
-		return ;
-	}
-	ft_putchar('0' + nb);
-}
-
-int ft_strchr_position(unsigned char *str, unsigned char c)
-{
-	unsigned int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			// ft_putstr("percent en position ");
-			// ft_putnbr(i);
-			// ft_putchar('\n');
-			return (i);
-		}
-		i++;
-	}
-	// ft_putstr("strchrpos -1\n");
-	return (-1);
-}
-
-unsigned char *ft_get_wildchar(int nb)
-{
-	unsigned char	*multichar;
-	unsigned char		c1;
-	unsigned char		c2;
-	unsigned char		c3;
-	unsigned char		c4;
-
-	multichar = (unsigned char*)ft_strnew(4);
-	c1 = 0;
-	c2 = 0;
-	c3 = 0;
-	c4 = 0;
-	if (nb <= 127)
-	{
-		c4 = nb;
-	}
-	else if (nb <= 2047)
-	{
-		c3 = nb >> 6;
-		c4 = nb - (c3 << 6);
-		c3 = c3 + 192;
-		c4 = c4 + 128;
-	}
-	else if (nb <= 65535)
-	{
-		c2 = nb >> 12;
-		c3 = (nb - (c2 << 12)) >> 6;
-		c4 = (nb - (c2 << 12) - (c3 << 6));
-		c2 = c2 + 224;
-		c3 = c3 + 128;
-		c4 = c4 + 128;
-	}
-	else if (nb <= 2097151)
-	{
-		c1 = nb >> 18;
-		c2 = (nb - (c1 << 18)) >> 12;
-		c3 = (nb - (c1 << 18) - (c2 << 12)) >> 6;
-		c4 = nb - (c1 << 18) - (c2 << 12) - (c3 << 6);
-		c1 = c1 + 240;
-		c2 = c2 + 128;
-		c3 = c3 + 128;
-		c4 = c4 + 128;
-	}
-	return (multichar);
-}
 
 unsigned char	*ft_strupper(unsigned char *str)
 {
@@ -134,7 +26,7 @@ unsigned char	*ft_strupper(unsigned char *str)
 	return (str);
 }
 
-int	ft_set_cursor(unsigned int cursor, unsigned char *copy)
+int				ft_set_cursor(unsigned int cursor, unsigned char *copy)
 {
 	unsigned int i;
 
@@ -151,82 +43,82 @@ int	ft_set_cursor(unsigned int cursor, unsigned char *copy)
 	return (-1);
 }
 
-unsigned char	*ft_printf_join(unsigned char *str1, unsigned char *str2, int nb)
+unsigned char	*ft_printf_join(unsigned char *str1,
+	unsigned char *str2)
 {
 	unsigned char	*tmp;
 	unsigned int	i;
 	unsigned int	j;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	tmp = NULL;
 	if (str1 == NULL)
-	{
 		tmp = (unsigned char*)ft_strdup((char*)str2);
-	}
 	else if (str2 == NULL)
-	{
 		tmp = (unsigned char*)ft_strdup((char*)str1);
-	}
 	else
 	{
-		if (!(tmp = (unsigned char*)ft_strnew(ft_strlen((char*)str1) + ft_strlen((char*)str2) + 1)))
+		if (!(tmp = (unsigned char*)ft_strnew(ft_strlen((char*)str1) +
+		ft_strlen((char*)str2) + 1)))
 			return (NULL);
-		while (str1[i])
-		{
+		while (str1[++i])
 			tmp[i] = str1[i];
-			i++;
-		}
-		while (str2[j])
+		while (str2[++j])
 		{
 			tmp[i] = str2[j];
 			i++;
-			j++;
 		}
 	}
-	if (!str1 && (nb == 1 || nb == 3))
-		free(str1);
-	if (!str2 && (nb == 2 || nb == 3))
-		free(str2);
 	return (tmp);
 }
 
-unsigned char	*ft_printf_join_bis(unsigned char *str1, unsigned char *str2, int nb)
+unsigned char	*ft_printf_join_bis(unsigned char *str1, unsigned char *str2,
+	unsigned int len1, unsigned int len2)
+{
+	unsigned char	*tmp;
+	unsigned int	i;
+
+	i = -1;
+	tmp = NULL;
+	if (str1 == NULL)
+	{
+		tmp = (unsigned char*)ft_strnew(len2);
+		while (++i < len2)
+			tmp[i] = str2[i];
+	}
+	else if (str2 == NULL)
+	{
+		tmp = (unsigned char*)ft_strnew(len1);
+		while (++i < len1)
+			tmp[i] = str1[i];
+	}
+	else
+	{
+		tmp = ft_printf_join_ter(len1, len2, str1, str2);
+	}
+	return (tmp);
+}
+
+unsigned char	*ft_printf_join_ter(unsigned int len1, unsigned int len2,
+	unsigned char *str1, unsigned char *str2)
 {
 	unsigned char	*tmp;
 	unsigned int	i;
 	unsigned int	j;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	tmp = NULL;
-	if (str1 == NULL)
+	if (!(tmp = (unsigned char*)ft_strnew(len1 + len2 + 1)))
+		return (NULL);
+	while (++i < len1)
+		tmp[i] = str1[i];
+	while (j < len2)
 	{
-		tmp = (unsigned char*)ft_strdup((char*)str2);
+		tmp[i] = str2[j];
+		i++;
+		j++;
 	}
-	else if (str2 == NULL)
-	{
-		tmp = (unsigned char*)ft_strdup((char*)str1);
-	}
-	else
-	{
-		if (!(tmp = (unsigned char*)ft_strnew(ft_strlen((char*)str1) + ft_strlen((char*)str2) + 1)))
-			return (NULL);
-		while (str1[i])
-		{
-			tmp[i] = str1[i];
-			i++;
-		}
-		while (str2[j])
-		{
-			tmp[i] = str2[j];
-			i++;
-			j++;
-		}
-	}
-	if (!str1 && (nb == 1 || nb == 3))
-		free(str1);
-	if (!str2 && (nb == 2 || nb == 3))
-		free(str2);
 	return (tmp);
 }

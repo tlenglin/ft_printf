@@ -1,1 +1,0 @@
-gcc -Wall -Werror -Wextra -g ft_bzero.c main.c ft_isprint.c conversion_specifier.c width_and_precision.c flag.c ft_printf.c length_modifier.c  ft_itoa_base.c ft_itoa.c ft_memalloc.c ft_putchar.c ft_putstr.c ft_atoi.c ft_strdup.c ft_strnew.c ft_memset.c ft_strlen.c ft_strsub.c ft_strcpy.c -o ft_printf
